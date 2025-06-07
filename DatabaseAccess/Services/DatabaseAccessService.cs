@@ -33,6 +33,13 @@ namespace DatabaseAccess.Services
             }
 
         }
+        /// <summary>
+        /// Executes a stored procedure with specified name and optional parameters
+        /// Returns number of affected rows.
+        /// </summary>
+        /// <param name="procedureName">Stored procedure name</param>
+        /// <param name="parameters">Optional parameters for procedure</param>
+        /// <returns>Number of affected rows or -1 if error occured</returns>
         public async Task<int> executeAsync(string procedureName,  object? parameters = null)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
@@ -64,7 +71,14 @@ namespace DatabaseAccess.Services
 
 
         }
-
+        /// <summary>
+        /// Executes a stored procedure with specified name and optional parameters
+        /// Returns number of affected rows.
+        /// </summary>
+        /// <param name="procedureName">Stored procedure name</param>
+        /// <param name="parameters">Optional parameters for procedure</param>
+        /// <returns>Procedure result | can be empty, null if error occured</returns>
+        /// zwaraca liste | moze byc pusta lub jesli blad to null
         public async Task<List<T>?> getListAsync<T>(string procedureName, object? parameters = null)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
@@ -90,7 +104,13 @@ namespace DatabaseAccess.Services
             }
             
         }
-
+        /// <summary>
+        /// Executes a stored procedure with specified name and optional parameters
+        /// </summary>
+        /// <param name="procedureName">Stored procedure name</param>
+        /// <param name="parameters">Optional parameters for procedure</param>
+        /// <returns>Procedure result, null if error </returns>
+        /// zwraca zero albo jeden rekord, jesli blad to null
         public async Task<T?> getSingleAsync<T>(string procedureName,  object? parameters = null)
         {
             SqlConnection connection = new SqlConnection(_connectionString);

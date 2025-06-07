@@ -26,7 +26,7 @@ namespace DatabaseAccessTest
             IDatabaseAccess DbA = new DatabaseAccessService(configuration, logger);
 
 
-            var lista = await DbA.getListAsync<Employee>(
+            var lista = await DbA.GetListAsync<Employee>(
                 "GetEmployees",
                  new { numberOfEmployees = 10 }
                 );
@@ -36,7 +36,7 @@ namespace DatabaseAccessTest
                 Console.WriteLine($"{e.FirstName} , {e.LastName}, {e.City}");
             }
             Console.WriteLine("-------------------------");
-            var listaProduktow = await DbA.getListAsync<Product>(
+            var listaProduktow = await DbA.GetListAsync<Product>(
                 "GetNProducts",
                 new { IleRekordowWyswietlic = 100 }
                 );
@@ -47,7 +47,7 @@ namespace DatabaseAccessTest
 
             Console.WriteLine("-------------------------");
 
-            var jedenRekord = await DbA.getSingleAsync<Product>(
+            var jedenRekord = await DbA.GetSingleAsync<Product>(
                 "GetProductById",
                 new { ProductID = 1 }
                 );
@@ -55,7 +55,7 @@ namespace DatabaseAccessTest
 
             Console.WriteLine("-------------------------");
 
-            var result = await DbA.executeAsync(
+            var result = await DbA.ExecuteAsync(
                 "UpdateProductPrice",
                 new { ProductID = 0, NewUnitPrice = 99.1 }
                 );
@@ -63,7 +63,7 @@ namespace DatabaseAccessTest
 
             Console.WriteLine("-------------------------");
 
-            var result2 = await DbA.executeAsync(
+            var result2 = await DbA.ExecuteAsync(
                 "InsertEmployee",
                 new { LastName = "John", FirstName = "Pork", HireDate = new DateTime(2020, 5, 15) }
                 );

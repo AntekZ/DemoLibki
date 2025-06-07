@@ -38,8 +38,7 @@
               "RelativeToolTip": "test\\Employee.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAzwAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-07T10:21:39.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-07T10:21:39.642Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
               "RelativeToolTip": "DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAqwBoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T12:52:13.375Z",
               "EditorCaption": ""
@@ -62,7 +61,7 @@
               "RelativeDocumentMoniker": "DatabaseAccess\\Services\\DatabaseAccessService.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Services\\DatabaseAccessService.cs",
               "RelativeToolTip": "DatabaseAccess\\Services\\DatabaseAccessService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAGgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T12:57:28.414Z",
               "EditorCaption": ""
@@ -75,7 +74,7 @@
               "RelativeDocumentMoniker": "test\\Program.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\test\\Program.cs",
               "RelativeToolTip": "test\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwB0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T12:55:53.974Z",
               "EditorCaption": ""

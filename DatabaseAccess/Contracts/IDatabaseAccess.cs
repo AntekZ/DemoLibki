@@ -15,8 +15,8 @@ namespace DatabaseAccess.Contracts
         /// <param name="procedureName">Stored procedure name</param>
         /// <param name="parameters">Optional parameters for procedure</param>
         /// <returns>Procedure result, null if error </returns>
-        /// zwraca zero albo jeden rekord, jesli blad to null
-        Task<T?> getSingleAsync<T>(string procedureName, 
+        /// zwraca pusty albo jeden rekord, jesli blad to null
+        Task<T?> GetSingleAsync<T>(string procedureName, 
             object? parameters = null);
 
 
@@ -29,7 +29,7 @@ namespace DatabaseAccess.Contracts
         /// <param name="parameters">Optional parameters for procedure</param>
         /// <returns>Procedure result | can be empty, null if error occured</returns>
         /// zwaraca liste | moze byc pusta lub jesli blad to null
-        Task<List<T>?> getListAsync<T>(string procedureName,  
+        Task<List<T>?> GetListAsync<T>(string procedureName,  
             object? parameters = null);
 
 
@@ -40,7 +40,7 @@ namespace DatabaseAccess.Contracts
         /// <param name="procedureName">Stored procedure name</param>
         /// <param name="parameters">Optional parameters for procedure</param>
         /// <returns>Number of affected rows or -1 if error occured</returns>
-        Task<int> executeAsync(string procedureName,  
+        Task<int> ExecuteAsync(string procedureName,  
             object? parameters = null);
     }
 }

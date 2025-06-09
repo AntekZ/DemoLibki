@@ -10,3 +10,4 @@ C:\Users\antek\source\repos\DatabaseAccess\DatabaseAccess\obj\Debug\net8.0\Datab
 C:\Users\antek\source\repos\DatabaseAccess\DatabaseAccess\obj\Debug\net8.0\refint\DatabaseAccess.dll
 C:\Users\antek\source\repos\DatabaseAccess\DatabaseAccess\obj\Debug\net8.0\DatabaseAccess.pdb
 C:\Users\antek\source\repos\DatabaseAccess\DatabaseAccess\obj\Debug\net8.0\ref\DatabaseAccess.dll
+C:\Users\antek\source\repos\DatabaseAccess\DatabaseAccess\obj\Debug\net8.0\DatabaseAccess.sourcelink.json

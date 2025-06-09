@@ -26,48 +26,68 @@ namespace DatabaseAccessTest
             IDatabaseAccess DbA = new DatabaseAccessService(configuration, logger);
 
 
-            var lista = await DbA.GetListAsync<Employee>(
-                "GetEmployees",
-                 new { numberOfEmployees = 10 }
-                );
+            var products = await DbA.GetListFromJsonAsync<Product>("GetProductsAsJson2");
 
-            foreach (Employee e in lista)
+            if (products != null)
             {
-                Console.WriteLine($"{e.FirstName} , {e.LastName}, {e.City}");
+                Console.WriteLine("dd");
+                Console.WriteLine($"Returned {products.Count} products.");
+                Console.WriteLine(products);
+                foreach (var product in products)
+                {
+                    Console.WriteLine($"ID: {product.ProductID}, Name: {product.ProductName}, Price: {product.UnitPrice}, InStock: {product.UnitsInStock}, Discontinued: {product.Discontinued}");
+                   
+                }
             }
-            Console.WriteLine("-------------------------");
-            var listaProduktow = await DbA.GetListAsync<Product>(
-                "GetNProducts",
-                new { IleRekordowWyswietlic = 100 }
-                );
-            foreach (Product p in listaProduktow)
+            else
             {
-                Console.WriteLine($"{p.ProductName}, {p.SupplierID}");
+                Console.WriteLine("essa");
             }
+            //var lista = await DbA.GetListAsync<Employee>("",new { numberOfEmployees = 10 } );
 
-            Console.WriteLine("-------------------------");
 
-            var jedenRekord = await DbA.GetSingleAsync<Product>(
-                "GetProductById",
-                new { ProductID = 1 }
-                );
-            Console.WriteLine($"{jedenRekord.ProductName} ,{jedenRekord.ProductID}, {jedenRekord.SupplierID}, {jedenRekord.QuantityPerUnit}");
 
-            Console.WriteLine("-------------------------");
 
-            var result = await DbA.ExecuteAsync(
-                "UpdateProductPrice",
-                new { ProductID = 0, NewUnitPrice = 99.1 }
-                );
-            Console.WriteLine(result);
+            //var lista2 = await DbA.GetListAsync<Employee>("GetAllEmployees");
 
-            Console.WriteLine("-------------------------");
+            //foreach (Employee e in lista2)
+            //{
+            //    Console.WriteLine($"{e.FirstName} , {e.LastName}, {e.City}");
+            //}
+            //Console.WriteLine("-------------------------");
+            //var listaProduktow = await DbA.GetListAsync<Product>(
+            //    "GetNProducts",
+            //    new { IleRekordowWyswietlic = 100 }
+            //    );
+            //foreach (Product p in listaProduktow)
+            //{
+            //    Console.WriteLine($"{p.ProductName}, {p.SupplierID}");
+            //}
 
-            var result2 = await DbA.ExecuteAsync(
-                "InsertEmployee",
-                new { LastName = "John", FirstName = "Pork", HireDate = new DateTime(2020, 5, 15) }
-                );
-            Console.WriteLine(result2);
+            //Console.WriteLine("-------------------------");
+
+            //var jedenRekord = await DbA.GetSingleAsync<Product>(
+            //    "GetProductById",
+            //    new { ProductID = 1111 }
+            //    );
+
+            //Console.WriteLine($"{jedenRekord.ProductName} ,{jedenRekord.ProductID}, {jedenRekord.SupplierID}, {jedenRekord.QuantityPerUnit}");
+
+            //Console.WriteLine("-------------------------");
+
+            //var result = await DbA.ExecuteAsync(
+            //    "UpdateProductPrice",
+            //    new { ProductID = 0, NewUnitPrice = 99.1 }
+            //    );
+            //Console.WriteLine(result);
+
+            //Console.WriteLine("-------------------------");
+
+            //var result2 = await DbA.ExecuteAsync(
+            //    "InsertEmployee",
+            //    new { LastName = "John", FirstName = "Pork", HireDate = new DateTime(2020, 5, 15) }
+            //    );
+            //Console.WriteLine(result2);
         }
     }
 }

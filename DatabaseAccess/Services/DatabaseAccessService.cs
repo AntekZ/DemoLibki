@@ -35,13 +35,29 @@ namespace DatabaseAccess.Services
 
         }
        
-        public async Task<int> ExecuteAsync(string procedureName,  object? parameters = null)
+        public async Task<int> ExecuteAsync(string procedureName,  object? parameters = null, SqlConnection? connection = null)
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
-            
+            // flag to idnetify if conn was passed in parameter or not 
+            //if passed conn: ownsConnetion = false
+            bool ownsConnection = false;
+                     
             try
             {
-                await connection.OpenAsync();
+                if (connection == null)
+                {
+                    connection = new SqlConnection(_connectionString);
+                    await connection.OpenAsync();
+                    ownsConnection = true;
+                }
+                else
+                {
+                    //if connection was not opened
+                    if(connection.State != ConnectionState.Open)
+                    {
+                        throw new InvalidOperationException("Passed connection was not opened.");
+                    }
+                }
+
                 //Returns how many rows were changed 
                 var rows = await connection.ExecuteAsync(
                     sql:procedureName,
@@ -60,21 +76,38 @@ namespace DatabaseAccess.Services
             }
             finally
             {
-                connection.Dispose();
+                //if connection made by this method - dispose
+                if (ownsConnection)
+                {
+                    connection.Dispose();
+                }
             }
             
-
-
         }
         
-        public async Task<List<T>?> GetListAsync<T>(string procedureName, object? parameters = null)
+        public async Task<List<T>?> GetListAsync<T>(string procedureName, object? parameters = null, SqlConnection? connection = null)
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
-
+            // flag to idnetify if conn was passed in parameter or not 
+            //if passed conn: ownsConnetion = false
+            bool ownsConnection = false;
+            
             try
             {
-                await connection.OpenAsync();
-
+                if (connection == null)
+                {
+                    connection = new SqlConnection(_connectionString);
+                    await connection.OpenAsync();
+                    ownsConnection = true;
+                }
+                else
+                {
+                    
+                    //if connection was not opened
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        throw new InvalidOperationException("Passed connection was not opened.");
+                    }
+                }
 
                 //returns an enumerable of the type specified by the T parameter
                 var result = await connection.QueryAsync<T>(
@@ -94,17 +127,38 @@ namespace DatabaseAccess.Services
             }
             finally
             {
-                connection.Dispose();
+                //if connection made by this method - dispose
+                if (ownsConnection)
+                {
+                    connection.Dispose();
+                }
             }
         }
 
-        public async Task<List<T>?> GetListFromJsonAsync<T>(string procedureName, object? prameters = null)
+        public async Task<List<T>?> GetListFromJsonAsync<T>(string procedureName, object? prameters = null, SqlConnection? connection = null)
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
+            // flag to idnetify if conn was passed in parameter or not 
+            //if passed conn: ownsConnetion = false
+            bool ownsConnection = false;
 
             try
             {
-                await connection.OpenAsync();
+                
+                if (connection == null)
+                {
+                    connection = new SqlConnection(_connectionString);
+                    await connection.OpenAsync();
+                    ownsConnection = true;
+                }
+                else
+                {
+                    
+                    //if connection was not opened
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        throw new InvalidOperationException("Passed connection was not opened.");
+                    }
+                }
 
                 //Zero or one row is expected to be returned. Returns an instance of the string type or null.
                 var jsonData = await connection.QuerySingleOrDefaultAsync<string>(
@@ -136,17 +190,36 @@ namespace DatabaseAccess.Services
             }
             finally
             {
-                connection.Dispose();
+                //if connection made by this method - dispose
+                if (ownsConnection)
+                {
+                    connection.Dispose();
+                }
             }
         }
 
-        public async Task<T?> GetSingleAsync<T>(string procedureName,  object? parameters = null)
+        public async Task<T?> GetSingleAsync<T>(string procedureName,  object? parameters = null, SqlConnection? connection = null)
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
+            // flag to idnetify if conn was passed in parameter or not 
+            //if passed conn: ownsConnetion = false
+            bool ownsConnection = false;
 
             try
             {
-                await connection.OpenAsync();
+                if (connection == null)
+                {
+                    connection = new SqlConnection(_connectionString);
+                    await connection.OpenAsync();
+                    ownsConnection = true;
+                }
+                else
+                {
+                    //if connection was not opened
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        throw new InvalidOperationException("Passed connection was not opened.");
+                    }
+                }
 
                 //Expects zero or one row to be returned. Returns an instance of the specified by the T type or null
                 var result = await connection.QuerySingleOrDefaultAsync<T>(
@@ -172,7 +245,11 @@ namespace DatabaseAccess.Services
             }
             finally
             {
-                connection.Dispose();  
+                //if connection made by this method - dispose
+                if (ownsConnection)
+                {
+                    connection.Dispose();
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ using DatabaseAccess.Contracts;
 using DatabaseAccess.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Data.SqlClient;
 using test;
 namespace DatabaseAccessTest
 {
@@ -27,15 +28,24 @@ namespace DatabaseAccessTest
             IDatabaseAccess DbA = new DatabaseAccessService(configuration, logger);
 
 
-            var products = await DbA.GetListFromJsonAsync<Product>("GetEmptyJsonList");
-            if (products != null)
-                Console.WriteLine(products.Count);
-            foreach (var product in products)
+            var employees = await DbA.GetListAsync<Employee>("GetAllEmployees");
+            
+            foreach (var employee in employees)
             {
-                    ;
-                Console.WriteLine($"{product.CategoryID}, {product.UnitPrice}");
+                    
+                Console.WriteLine($"{employee.FirstName}, {employee.LastName}");
             }
 
+            var conn = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
+
+            conn.Open();
+
+            var employeesTest = await DbA.GetListAsync<Employee>("GetAllEmployees", connection:conn);
+            foreach (var employee1 in employeesTest)
+            {
+
+                Console.WriteLine($"{employee1.FirstName}, {employee1.LastName}");
+            }
             //if (products != null)
             //{
             //    Console.WriteLine("dd");
@@ -44,7 +54,7 @@ namespace DatabaseAccessTest
             //    foreach (var product in products)
             //    {
             //        Console.WriteLine($"ID: {product.ProductID}, Name: {product.ProductName}, Price: {product.UnitPrice}, InStock: {product.UnitsInStock}, Discontinued: {product.Discontinued}");
-                   
+
             //    }
             //}
             //else

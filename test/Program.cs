@@ -15,7 +15,8 @@ namespace DatabaseAccessTest
             var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "ConnectionString", "Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;" },
+                //{ "ConnectionString", "Server=141.95.205.183;Database=NConnect2;User ID=azaprzala;Password=aZn8TbcP8b89;Encrypt=False"},
+                { "ConnectionString","Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;"},
                 { "CommandTimeout", "30" }
             })
             .Build();
@@ -26,48 +27,75 @@ namespace DatabaseAccessTest
             IDatabaseAccess DbA = new DatabaseAccessService(configuration, logger);
 
 
-            var lista = await DbA.GetListAsync<Employee>(
-                "GetEmployees",
-                 new { numberOfEmployees = 10 }
-                );
-
-            foreach (Employee e in lista)
+            var products = await DbA.GetListFromJsonAsync<Product>("GetEmptyJsonList");
+            if (products != null)
+                Console.WriteLine(products.Count);
+            foreach (var product in products)
             {
-                Console.WriteLine($"{e.FirstName} , {e.LastName}, {e.City}");
-            }
-            Console.WriteLine("-------------------------");
-            var listaProduktow = await DbA.GetListAsync<Product>(
-                "GetNProducts",
-                new { IleRekordowWyswietlic = 100 }
-                );
-            foreach (Product p in listaProduktow)
-            {
-                Console.WriteLine($"{p.ProductName}, {p.SupplierID}");
+                    ;
+                Console.WriteLine($"{product.CategoryID}, {product.UnitPrice}");
             }
 
-            Console.WriteLine("-------------------------");
+            //if (products != null)
+            //{
+            //    Console.WriteLine("dd");
+            //    Console.WriteLine($"Returned {products.Count} products.");
+            //    Console.WriteLine(products);
+            //    foreach (var product in products)
+            //    {
+            //        Console.WriteLine($"ID: {product.ProductID}, Name: {product.ProductName}, Price: {product.UnitPrice}, InStock: {product.UnitsInStock}, Discontinued: {product.Discontinued}");
+                   
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("okk");
+            //}
+            //var lista = await DbA.GetListAsync<Employee>("",new { numberOfEmployees = 10 } );
 
-            var jedenRekord = await DbA.GetSingleAsync<Product>(
-                "GetProductById",
-                new { ProductID = 1 }
-                );
-            Console.WriteLine($"{jedenRekord.ProductName} ,{jedenRekord.ProductID}, {jedenRekord.SupplierID}, {jedenRekord.QuantityPerUnit}");
 
-            Console.WriteLine("-------------------------");
 
-            var result = await DbA.ExecuteAsync(
-                "UpdateProductPrice",
-                new { ProductID = 0, NewUnitPrice = 99.1 }
-                );
-            Console.WriteLine(result);
 
-            Console.WriteLine("-------------------------");
+            //var lista2 = await DbA.GetListAsync<Employee>("GetAllEmployees");
 
-            var result2 = await DbA.ExecuteAsync(
-                "InsertEmployee",
-                new { LastName = "John", FirstName = "Pork", HireDate = new DateTime(2020, 5, 15) }
-                );
-            Console.WriteLine(result2);
+            //foreach (Employee e in lista2)
+            //{
+            //    Console.WriteLine($"{e.FirstName} , {e.LastName}, {e.City}");
+            //}
+            //Console.WriteLine("-------------------------");
+            //var listaProduktow = await DbA.GetListAsync<Product>(
+            //    "GetNProducts",
+            //    new { IleRekordowWyswietlic = 100 }
+            //    );
+            //foreach (Product p in listaProduktow)
+            //{
+            //    Console.WriteLine($"{p.ProductName}, {p.SupplierID}");
+            //}
+
+            //Console.WriteLine("-------------------------");
+
+            //var jedenRekord = await DbA.GetSingleAsync<Product>(
+            //    "GetProductById",
+            //    new { ProductID = 1111 }
+            //    );
+
+            //Console.WriteLine($"{jedenRekord.ProductName} ,{jedenRekord.ProductID}, {jedenRekord.SupplierID}, {jedenRekord.QuantityPerUnit}");
+
+            //Console.WriteLine("-------------------------");
+
+            //var result = await DbA.ExecuteAsync(
+            //    "UpdateProductPrice",
+            //    new { ProductID = 0, NewUnitPrice = 99.1 }
+            //    );
+            //Console.WriteLine(result);
+
+            //Console.WriteLine("-------------------------");
+
+            //var result2 = await DbA.ExecuteAsync(
+            //    "InsertEmployee",
+            //    new { LastName = "John", FirstName = "P", HireDate = new DateTime(2020, 5, 15) }
+            //    );
+            //Console.WriteLine(result2);
         }
     }
 }

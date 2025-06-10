@@ -15,7 +15,8 @@ namespace DatabaseAccessTest
             var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string>
             {
-                { "ConnectionString", "Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;" },
+                //{ "ConnectionString", "Server=141.95.205.183;Database=NConnect2;User ID=azaprzala;Password=aZn8TbcP8b89;Encrypt=False"},
+                { "ConnectionString","Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;"},
                 { "CommandTimeout", "30" }
             })
             .Build();
@@ -26,23 +27,30 @@ namespace DatabaseAccessTest
             IDatabaseAccess DbA = new DatabaseAccessService(configuration, logger);
 
 
-            var products = await DbA.GetListFromJsonAsync<Product>("GetProductsAsJson2");
-
+            var products = await DbA.GetListFromJsonAsync<Product>("GetEmptyJsonList");
             if (products != null)
+                Console.WriteLine(products.Count);
+            foreach (var product in products)
             {
-                Console.WriteLine("dd");
-                Console.WriteLine($"Returned {products.Count} products.");
-                Console.WriteLine(products);
-                foreach (var product in products)
-                {
-                    Console.WriteLine($"ID: {product.ProductID}, Name: {product.ProductName}, Price: {product.UnitPrice}, InStock: {product.UnitsInStock}, Discontinued: {product.Discontinued}");
+                    ;
+                Console.WriteLine($"{product.CategoryID}, {product.UnitPrice}");
+            }
+
+            //if (products != null)
+            //{
+            //    Console.WriteLine("dd");
+            //    Console.WriteLine($"Returned {products.Count} products.");
+            //    Console.WriteLine(products);
+            //    foreach (var product in products)
+            //    {
+            //        Console.WriteLine($"ID: {product.ProductID}, Name: {product.ProductName}, Price: {product.UnitPrice}, InStock: {product.UnitsInStock}, Discontinued: {product.Discontinued}");
                    
-                }
-            }
-            else
-            {
-                Console.WriteLine("essa");
-            }
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("okk");
+            //}
             //var lista = await DbA.GetListAsync<Employee>("",new { numberOfEmployees = 10 } );
 
 
@@ -85,7 +93,7 @@ namespace DatabaseAccessTest
 
             //var result2 = await DbA.ExecuteAsync(
             //    "InsertEmployee",
-            //    new { LastName = "John", FirstName = "Pork", HireDate = new DateTime(2020, 5, 15) }
+            //    new { LastName = "John", FirstName = "P", HireDate = new DateTime(2020, 5, 15) }
             //    );
             //Console.WriteLine(result2);
         }

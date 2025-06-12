@@ -20,7 +20,7 @@ namespace DatabaseAccess.Contracts
         /// <returns>Procedure result (precisely one record), null if error occured or zero records returned by the procedure</returns>
         Task<T?> GetSingleAsync<T>(string procedureName, 
             object? parameters = null,
-            SqlConnection? connection = null
+            IDbConnection? connection = null
             );
 
 
@@ -35,7 +35,7 @@ namespace DatabaseAccess.Contracts
         /// <returns>Procedure result, null if error occured</returns>
         Task<List<T>?> GetListAsync<T>(string procedureName,  
             object? parameters = null,
-            SqlConnection? connection = null
+            IDbConnection? connection = null
             );
 
 
@@ -49,7 +49,7 @@ namespace DatabaseAccess.Contracts
         /// <returns>Number of affected rows or -1 if error occured</returns>
         Task<int> ExecuteAsync(string procedureName,  
             object? parameters = null,
-            SqlConnection? connection = null
+            IDbConnection? connection = null
             );
 
 
@@ -65,8 +65,8 @@ namespace DatabaseAccess.Contracts
         /// <param name="parameters">Optional parameters for procedure</param>
         /// <returns>A List<T> if the procedure returns valid Json, Null if an error ocurred.</returns>
         Task<List<T>?> GetListFromJsonAsync<T>(string procedureName,
-            object? prameters = null,
-            SqlConnection? connection = null
+            object? parameters = null,
+            IDbConnection? connection = null
             );
 
     }

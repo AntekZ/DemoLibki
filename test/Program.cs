@@ -22,30 +22,33 @@ namespace DatabaseAccessTest
             })
             .Build();
 
-            using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-            ILogger<DatabaseAccessService> logger = loggerFactory.CreateLogger<DatabaseAccessService>();
-
-            IDatabaseAccess DbA = new DatabaseAccessService(configuration, logger);
-
-
-            var employees = await DbA.GetListAsync<Employee>("GetAllEmployees");
             
-            foreach (var employee in employees)
-            {
-                    
-                Console.WriteLine($"{employee.FirstName}, {employee.LastName}");
-            }
+                using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+                ILogger<DatabaseAccessService> logger = loggerFactory.CreateLogger<DatabaseAccessService>();
+                IConnectionFactory factory = new SqlConnectionFactory(configuration);
+
+                IDatabaseAccess DbA = new DatabaseAccessService(factory, configuration, logger);
+
+                var employees = await DbA.GetListAsync<Employee>("GetAllEmployees");
+
+                foreach (var employee in employees)
+                {
+
+                    Console.WriteLine($"{employee.FirstName}, {employee.LastName}");
+                }
+
 
             var conn = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
 
             conn.Open();
 
-            var employeesTest = await DbA.GetListAsync<Employee>("GetAllEmployees", connection:conn);
+            var employeesTest = await DbA.GetListAsync<Employee>("GetAllEmployees", connection: conn);
             foreach (var employee1 in employeesTest)
             {
 
                 Console.WriteLine($"{employee1.FirstName}, {employee1.LastName}");
             }
+            conn.Dispose();
             //if (products != null)
             //{
             //    Console.WriteLine("dd");

@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[2.1.66, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[9.0.5, )"
@@ -137,6 +141,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
             "Microsoft.Extensions.Logging.Console": {
               "target": "Package",
               "version": "[9.0.5, )"

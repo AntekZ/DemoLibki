@@ -1,5 +1,7 @@
 ﻿using DatabaseAccess.Contracts;
+using DatabaseAccess.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DatabaseAccess.Services
 {
@@ -20,10 +23,12 @@ namespace DatabaseAccess.Services
                 ?? throw new InvalidOperationException(
                    "Missing 'ConnectionString' in configuration.");
 
+            
         }
+       
         public async Task<IDbConnection> CreateOpenConnectionAsync()
         {
-            var connection = new SqlConnection(_connectionString);
+            var connection = new SqlConnection(_connectionString);        
             await connection.OpenAsync();
             return connection;
         }

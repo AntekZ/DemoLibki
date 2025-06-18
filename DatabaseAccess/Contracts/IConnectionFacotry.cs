@@ -11,9 +11,9 @@ namespace DatabaseAccess.Contracts
     public interface IConnectionFactory
     {
         /// <summary>
-        /// Returns created and opened data base connection.
+        /// Returns created and opened database connection.
         /// </summary>
-        /// <returns>Data base connection.</returns>
+        /// <returns>Database connection.</returns>
         Task<IDbConnection> CreateOpenConnectionAsync();
 
         

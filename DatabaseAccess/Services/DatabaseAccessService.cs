@@ -5,7 +5,6 @@ using System.Data;
 using Dapper;
 using System.Text.Json;
 using DatabaseAccess.Models;
-//Using Microsoft.Data.SqlClient;
 using System.Data.SqlClient;
 using System.Data.Common;
 
@@ -19,8 +18,8 @@ namespace DatabaseAccess.Services
         public DatabaseAccessService(IConnectionFactory factory, IConfiguration configuration, ILogger<DatabaseAccessService> logger)
         {
             _factory = factory;
-            _commandTimeout = int.TryParse(configuration["CommandTimeout"], out var res) ? res : 30;
             _logger = logger;
+            _commandTimeout = int.TryParse(configuration["CommandTimeout"], out var res) ? res : 30;            
             _logger.LogInformation("DB command timeout: {x}", _commandTimeout);
         }
         public event EventHandler<OnDisconnectEventArgs>? OnDisconnect;
@@ -30,7 +29,7 @@ namespace DatabaseAccess.Services
         //if OnDisconnect was subsrcibed, invoke
         private void AttachDisconnectHandler(IDbConnection connection)
         {
-
+            
             
             ((SqlConnection)connection).StateChange += (_, e) =>
             {
@@ -41,7 +40,6 @@ namespace DatabaseAccess.Services
                     DateTime when = DateTime.Now;
                     OnDisconnect?.Invoke(this, new OnDisconnectEventArgs
                     {
-
                         When = when
                     });
                     _logger.LogWarning("Connection to the database has been lost at {When}", when);

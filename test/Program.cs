@@ -51,7 +51,7 @@ namespace DatabaseAccessTest
                 var conn = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
                 conn.Open();
                 //conn.Close();
-                var result = await DbA.ExecuteAsync("WaitThirtySeconds",connection:conn);
+                var result = await DbA.ExecuteAsync("UpdateEmployeeLastName", connection:conn,parameters: new {NewLastName ="Jaro" ,EmployeeID = 1});
                 Console.WriteLine(result);
 
 

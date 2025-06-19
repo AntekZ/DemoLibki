@@ -13,9 +13,25 @@ namespace DatabaseAccess.Contracts
     {
 
         /// <summary>
-        /// Event
+        /// 
         /// </summary>
         event EventHandler<OnDisconnectEventArgs> OnDisconnect;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cacheKey"></param>
+        public void ClearCache(string cacheKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cacheKey"></param>
+        /// <param name="fetch"></param>
+        /// <param name="expiration"></param>
+        /// <returns></returns>
+        public Task<List<T>?> GetListWithCacheAsync<T>(string cacheKey, Func<Task<List<T>?>> fetch, TimeSpan expiration);
 
         /// <summary>
         /// Opens and dispose database connection. | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion,

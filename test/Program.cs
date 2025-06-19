@@ -2,6 +2,7 @@
 using DatabaseAccess;
 using DatabaseAccess.Contracts;
 using DatabaseAccess.Services;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Data;
@@ -25,12 +26,12 @@ namespace DatabaseAccessTest
             .Build();
 
             
-                using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+            using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
             ILogger<DatabaseAccessService> logger = loggerFactory.CreateLogger<DatabaseAccessService>();
-            
+            IMemoryCache cache = new MemoryCache(new MemoryCacheOptions());
             IConnectionFactory factory = new SqlConnectionFactory(configuration);
 
-            IDatabaseAccess DbA = new DatabaseAccessService(factory, configuration, logger);
+            IDatabaseAccess DbA = new DatabaseAccessService(factory, configuration, logger,cache);
 
             //    var employees = await DbA.GetListAsync<Employee>("GetAllEmployees");
 
@@ -39,29 +40,70 @@ namespace DatabaseAccessTest
 
             //        Console.WriteLine($"{employee.FirstName}, {employee.LastName}");
             //    }
-            
-                //DbA.OnDisconnect += (sender, args) =>{
-                //Console.WriteLine($"Połączenie zerwane {args.When}");
-                //for(int i = 0; i<10;i++)
-                //{
-                //    Console.WriteLine("c");
-                //}
-                //    };
-           
-                var conn = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
-                conn.Open();
-                //conn.Close();
-                var result = await DbA.ExecuteAsync("UpdateEmployeeLastName", connection:conn,parameters: new {NewLastName ="Jaro" ,EmployeeID = 1});
-                Console.WriteLine(result);
+
+            //DbA.OnDisconnect += (sender, args) =>{
+            //Console.WriteLine($"Połączenie zerwane {args.When}");
+            //for(int i = 0; i<10;i++)
+            //{
+            //    Console.WriteLine("c");
+            //}
+            //    };
+
+            //var conn = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
+            //conn.Open();
+            ////conn.Close();
+            //var result = await DbA.ExecuteAsync("UpdateEmployeeLastName", connection:conn,parameters: new {NewLastName ="Jaro" ,EmployeeID = 1});
+            //Console.WriteLine(result);
+
+            //var employees = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
+            //fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
+            //expiration: TimeSpan.FromMinutes(10));
+
+            //foreach (Employee e in employees)
+            //{
+            //    Console.WriteLine(e.FirstName);
+            //}
+
+            var emptyList =await DbA.GetListAsync<Employee>("GetAllEmployees");
 
 
+            foreach (var emp in emptyList)
+            {
+                Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
+            }
 
-                //var conn2 = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
-                //conn2.Open();
-                //var result2 = await DbA.GetListAsync<Employee>("WaitThirtySeconds", connection: conn2);
-                //Console.WriteLine(result2);
-                //conn.Open();
-            
+            Console.WriteLine("----------------------------------------------------------------");
+            var employees = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
+           fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
+           expiration: TimeSpan.FromMinutes(10));
+
+            foreach (Employee emp in employees)
+            {
+                Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
+            }
+            Console.WriteLine("------------------------------------------------------------------------------");
+            var employees2 = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
+           fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
+           expiration: TimeSpan.FromMinutes(10));
+            foreach (Employee emp in employees2)
+            {
+                Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
+            }
+            DbA.ClearCache("all_empoloyees");
+            Console.WriteLine("------------------------------------------------------------------------------");
+            var employees3 = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
+          fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
+          expiration: TimeSpan.FromMinutes(10));
+            foreach (Employee emp in employees3)
+            {
+                Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
+            }
+            //var conn2 = new SqlConnection("Server=ASUSANTEK\\SQLEXPRESS;Database=NORTHWND;Trusted_Connection=True;Encrypt=False;");
+            //conn2.Open();
+            //var result2 = await DbA.GetListAsync<Employee>("WaitThirtySeconds", connection: conn2);
+            //Console.WriteLine(result2);
+            //conn.Open();
+
             //var employeesTest = await DbA.GetListAsync<Employee>("GetAllEmployees", connection: conn);
             //foreach (var employee1 in employeesTest)
             //{

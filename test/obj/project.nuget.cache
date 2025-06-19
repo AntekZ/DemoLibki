@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uUY9g3kFYuk=",
+  "dgSpecHash": "zrnrztz4NLg=",
   "success": true,
   "projectFilePath": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\test\\test.csproj",
   "expectedPackageFiles": [
@@ -11,8 +11,8 @@
     "C:\\Users\\antek\\.nuget\\packages\\microsoft.bcl.cryptography\\8.0.0\\microsoft.bcl.cryptography.8.0.0.nupkg.sha512",
     "C:\\Users\\antek\\.nuget\\packages\\microsoft.data.sqlclient\\6.0.2\\microsoft.data.sqlclient.6.0.2.nupkg.sha512",
     "C:\\Users\\antek\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\6.0.2\\microsoft.data.sqlclient.sni.runtime.6.0.2.nupkg.sha512",
-    "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.1\\microsoft.extensions.caching.memory.8.0.1.nupkg.sha512",
+    "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.6\\microsoft.extensions.caching.abstractions.9.0.6.nupkg.sha512",
+    "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.6\\microsoft.extensions.caching.memory.9.0.6.nupkg.sha512",
     "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.5\\microsoft.extensions.configuration.9.0.5.nupkg.sha512",
     "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.5\\microsoft.extensions.configuration.abstractions.9.0.5.nupkg.sha512",
     "C:\\Users\\antek\\.nuget\\packages\\microsoft.extensions.configuration.binder\\9.0.5\\microsoft.extensions.configuration.binder.9.0.5.nupkg.sha512",

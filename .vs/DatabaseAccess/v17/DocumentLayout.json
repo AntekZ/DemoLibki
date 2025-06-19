@@ -11,24 +11,24 @@
       "RelativeMoniker": "D:0:0:{5472DD45-2319-4174-AFAC-0C492ED5F13D}|test\\test.csproj|solutionrelative:test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\databaseaccess\\contracts\\idatabaseaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|solutionrelative:databaseaccess\\contracts\\idatabaseaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\databaseaccess\\contracts\\iconnectionfacotry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|solutionrelative:databaseaccess\\contracts\\iconnectionfacotry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5472DD45-2319-4174-AFAC-0C492ED5F13D}|test\\test.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\test\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5472DD45-2319-4174-AFAC-0C492ED5F13D}|test\\test.csproj|solutionrelative:test\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\databaseaccess\\models\\ondisconnecteventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|solutionrelative:databaseaccess\\models\\ondisconnecteventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5472DD45-2319-4174-AFAC-0C492ED5F13D}|test\\test.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\test\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5472DD45-2319-4174-AFAC-0C492ED5F13D}|test\\test.csproj|solutionrelative:test\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\databaseaccess\\services\\sqlconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|solutionrelative:databaseaccess\\services\\sqlconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\databaseaccess\\contracts\\iconnectionfacotry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|solutionrelative:databaseaccess\\contracts\\iconnectionfacotry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|c:\\users\\antek\\source\\repos\\databaseaccess\\databaseaccess\\contracts\\idatabaseaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6930EF9-5EA3-443D-AA0B-416A658A6765}|DatabaseAccess\\DatabaseAccess.csproj|solutionrelative:databaseaccess\\contracts\\idatabaseaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Employee.cs",
               "DocumentMoniker": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\test\\Employee.cs",
               "RelativeDocumentMoniker": "test\\Employee.cs",
@@ -55,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "OnDisconnectEventArgs.cs",
               "DocumentMoniker": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Models\\OnDisconnectEventArgs.cs",
               "RelativeDocumentMoniker": "DatabaseAccess\\Models\\OnDisconnectEventArgs.cs",
@@ -74,7 +74,7 @@
               "RelativeDocumentMoniker": "test\\Program.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\test\\Program.cs",
               "RelativeToolTip": "test\\Program.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFYAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwEsAAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T12:55:53.974Z",
               "EditorCaption": ""
@@ -87,27 +87,27 @@
               "RelativeDocumentMoniker": "DatabaseAccess\\Services\\DatabaseAccessService.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Services\\DatabaseAccessService.cs",
               "RelativeToolTip": "DatabaseAccess\\Services\\DatabaseAccessService.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAD0AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T12:57:28.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "IDatabaseAccess.cs",
               "DocumentMoniker": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
               "RelativeDocumentMoniker": "DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
               "RelativeToolTip": "DatabaseAccess\\Contracts\\IDatabaseAccess.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAA7wDsAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAwBQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T12:52:13.375Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IConnectionFacotry.cs",
               "DocumentMoniker": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Contracts\\IConnectionFacotry.cs",
               "RelativeDocumentMoniker": "DatabaseAccess\\Contracts\\IConnectionFacotry.cs",
@@ -120,15 +120,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "SqlConnectionFactory.cs",
               "DocumentMoniker": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Services\\SqlConnectionFactory.cs",
               "RelativeDocumentMoniker": "DatabaseAccess\\Services\\SqlConnectionFactory.cs",
               "ToolTip": "C:\\Users\\antek\\source\\repos\\DatabaseAccess\\DatabaseAccess\\Services\\SqlConnectionFactory.cs",
               "RelativeToolTip": "DatabaseAccess\\Services\\SqlConnectionFactory.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T15:26:49.822Z"
+              "WhenOpened": "2025-06-12T15:26:49.822Z",
+              "EditorCaption": ""
             }
           ]
         }

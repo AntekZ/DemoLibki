@@ -39,7 +39,7 @@ namespace DatabaseAccess.Services
             
             ((SqlConnection)connection).StateChange += (_, e) =>
             {
-               
+                
                 
                 if (e.CurrentState is ConnectionState.Broken or ConnectionState.Closed)
                 {
@@ -53,17 +53,26 @@ namespace DatabaseAccess.Services
                     
             };
         }
-        public async Task<List<T>?> GetListWithCacheAsync<T>(string cacheKey, Func<Task<List<T>?>> fetch, TimeSpan expiration)
+        public async Task<List<T>?> GetListWithCacheAsync<T>(string cacheKey, 
+            Func<Task<List<T>?>>? fetch = null, TimeSpan? expiration = null)
         {
             try
             {
                 //try to get a value from cache using cache key 
                 if (_cache.TryGetValue(cacheKey, out List<T>? cached))
                 {
-                    _logger.LogDebug($"Returned from cache: {cacheKey}");
+                    _logger.LogInformation($"Returned from cache: {cacheKey}");
                     return cached;
                 }
-                //if there is nothing in cache, signed to data result of passed function
+                
+
+                if(fetch is null || expiration is null)
+                {
+                    _logger.LogWarning($"No data in cache for key: {cacheKey}");
+                    return null;
+                }
+                
+                //if there is nothing in cache, signe to data result of passed function
                 var data = await fetch();
 
                 if (data is null)
@@ -71,11 +80,12 @@ namespace DatabaseAccess.Services
                     _logger.LogWarning($"Fetch for {cacheKey} returned null — not caching.");
                     return null;
                 }
-                
+
                 //setting up memory cache.
-                _cache.Set(cacheKey, data, absoluteExpirationRelativeToNow: expiration);
+                _cache.Set(cacheKey, data, absoluteExpirationRelativeToNow: expiration.Value);
                 _logger.LogInformation($"Data cached under key: {cacheKey}");
                 return data;
+                                
             }
             catch (Exception e)
             {

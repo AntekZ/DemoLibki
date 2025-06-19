@@ -18,12 +18,15 @@ namespace DatabaseAccess.Contracts
         event EventHandler<OnDisconnectEventArgs> OnDisconnect;
 
         /// <summary>
-        /// 
+        /// Usuwa cache dla podanego klucza
         /// </summary>
         /// <param name="cacheKey"></param>
         public void ClearCache(string cacheKey);
 
         /// <summary>
+        /// Metoda pobiera dane z cache na podstawwie klucza
+        /// jesli danych nie ma i podano w opcjonalnych paramaterach metode fetch i expiration to pobiera dane i zapisuje do cache
+        /// jesli danych nie ma i nie podano metody fetch lub expiration to loguje ostrzezenie i zwraca null
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -31,7 +34,8 @@ namespace DatabaseAccess.Contracts
         /// <param name="fetch"></param>
         /// <param name="expiration"></param>
         /// <returns></returns>
-        public Task<List<T>?> GetListWithCacheAsync<T>(string cacheKey, Func<Task<List<T>?>> fetch, TimeSpan expiration);
+        public Task<List<T>?> GetListWithCacheAsync<T>(string cacheKey, 
+            Func<Task<List<T>?>>? fetch = null, TimeSpan? expiration = null);
 
         /// <summary>
         /// Opens and dispose database connection. | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion,

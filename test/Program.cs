@@ -66,34 +66,34 @@ namespace DatabaseAccessTest
 
             var emptyList =await DbA.GetListAsync<Employee>("GetAllEmployees");
 
-
+            Console.WriteLine("1---------------------------------------------------------------");
             foreach (var emp in emptyList)
             {
                 Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
             }
 
-            Console.WriteLine("----------------------------------------------------------------");
-            var employees = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
-           fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
-           expiration: TimeSpan.FromMinutes(10));
+            Console.WriteLine("2---------------------------------------------------------------");
+            var employees = await DbA.GetListWithCacheAsync<Employee>(cacheKey: "all_empoloyees");//,
+           //fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
+           //expiration: TimeSpan.FromMinutes(10));
 
             foreach (Employee emp in employees)
             {
                 Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
             }
-            Console.WriteLine("------------------------------------------------------------------------------");
-            var employees2 = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
-           fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
-           expiration: TimeSpan.FromMinutes(10));
+            Console.WriteLine("3-----------------------------------------------------------------------------");
+
+            var employees2 = await DbA.GetListWithCacheAsync<Employee>(cacheKey:"all_empoloyees");
+           
             foreach (Employee emp in employees2)
             {
                 Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");
             }
             DbA.ClearCache("all_empoloyees");
-            Console.WriteLine("------------------------------------------------------------------------------");
-            var employees3 = await DbA.GetListWithCacheAsync(cacheKey: "all_empoloyees",
-          fetch: () => DbA.GetListAsync<Employee>("GetAllEmployees"),
-          expiration: TimeSpan.FromMinutes(10));
+
+            Console.WriteLine("4-----------------------------------------------------------------------------");
+
+            var employees3 = await DbA.GetListWithCacheAsync<Employee>(cacheKey: "all_empoloyees");        
             foreach (Employee emp in employees3)
             {
                 Console.WriteLine($"{emp.LastName}, {emp.FirstName} , {emp.Address}, {emp.BirthDate}, {emp.City}");

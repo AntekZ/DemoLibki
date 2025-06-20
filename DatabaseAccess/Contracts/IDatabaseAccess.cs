@@ -13,7 +13,7 @@ namespace DatabaseAccess.Contracts
     {
 
         /// <summary>
-        /// 
+        /// Publiczy event do subskrypcji 
         /// </summary>
         event EventHandler<OnDisconnectEventArgs> OnDisconnect;
 

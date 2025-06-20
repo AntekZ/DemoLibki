@@ -32,7 +32,7 @@ namespace DatabaseAccess.Services
 
         //if connection was passed to the metod by parameter
         //add StateChagne event to connection
-        //if OnDisconnect was subsrcibed, invoke
+        //if OnDisconnect was subsrcibed, invoke 
         private void AttachDisconnectHandler(IDbConnection connection)
         {
             

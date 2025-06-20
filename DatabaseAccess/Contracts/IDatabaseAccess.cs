@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,8 +11,35 @@ namespace DatabaseAccess.Contracts
 {
     public interface IDatabaseAccess
     {
+
         /// <summary>
-        /// Opens and dispose database connection. | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion
+        /// Publiczy event do subskrypcji 
+        /// </summary>
+        event EventHandler<OnDisconnectEventArgs> OnDisconnect;
+
+        /// <summary>
+        /// Usuwa cache dla podanego klucza
+        /// </summary>
+        /// <param name="cacheKey"></param>
+        public void ClearCache(string cacheKey);
+
+        /// <summary>
+        /// Metoda pobiera dane z cache na podstawwie klucza
+        /// jesli danych nie ma i podano w opcjonalnych paramaterach metode fetch i expiration to pobiera dane i zapisuje do cache
+        /// jesli danych nie ma i nie podano metody fetch lub expiration to loguje ostrzezenie i zwraca null
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cacheKey"></param>
+        /// <param name="fetch"></param>
+        /// <param name="expiration"></param>
+        /// <returns></returns>
+        public Task<List<T>?> GetListWithCacheAsync<T>(string cacheKey, 
+            Func<Task<List<T>?>>? fetch = null, TimeSpan? expiration = null);
+
+        /// <summary>
+        /// Opens and dispose database connection. | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion,
+        /// The connection is automatically subscribed to the StateChange event. If the connection to the database is lost, a custom event (if previously registered) will be invoked.
         /// Executes a stored procedure with specified name and optional parameters.
         /// Returns procedure result (precisely one record), null if error occured.
         /// </summary>
@@ -27,6 +55,7 @@ namespace DatabaseAccess.Contracts
 
         /// <summary>
         /// Opens and dispose database connection. | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion
+        /// The connection is automatically subscribed to the StateChange event. If the connection to the database is lost, a custom event (if previously registered) will be invoked.
         /// Executes a stored procedure with specified name and optional parameters.
         /// Returns procedure result, null if error occured.
         /// </summary>
@@ -41,6 +70,7 @@ namespace DatabaseAccess.Contracts
 
         /// <summary>
         /// Opens and dispose database connection. | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion
+        /// The connection is automatically subscribed to the StateChange event. If the connection to the database is lost, a custom event (if previously registered) will be invoked.
         /// Executes a stored procedure with specified name and optional parameters.
         /// Returns number of affected rows or -1 if error occured.
         /// </summary>
@@ -55,6 +85,7 @@ namespace DatabaseAccess.Contracts
 
         /// <summary>
         /// Opens and dispose database connection | if sql connetion is passed as parameter it is mandatory to mannualy open and dispose database connetiion
+        /// The connection is automatically subscribed to the StateChange event. If the connection to the database is lost, a custom event (if previously registered) will be invoked.
         /// Executes a stored procedure with specified name and optional parameters.
         /// Deserialize Json into a list of objects of type and returns the list.
         /// 
